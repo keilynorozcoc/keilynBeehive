@@ -1,9 +1,10 @@
 class Post {
-	constructor(userId, id, title, completed) {
+	constructor(userId, id, title, body) {
 		this.userId = userId;
 		this.id = id;
 		this.title  = title ;
-		this.completed = completed;
+		this.body = body;
+		this.comments = [];
 	}
 
 }

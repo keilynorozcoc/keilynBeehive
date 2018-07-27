@@ -1,6 +1,6 @@
 class Component {
 
-	constructor(model,parent, dataManager) {
+	constructor(model, parent, dataManager) {
 		this.model = model;
 		this.parent = parent;
 		this.dataManager = dataManager;

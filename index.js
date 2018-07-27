@@ -1,21 +1,16 @@
 window.addEventListener('load', init, false);
-
 function init() {
 	//Declare variables
 	var dataManager = new DataManager();
 	var navManager = new NavManager(dataManager);
-
-	// var bees;
-
-	//Initialize variables
-	// bees = [];
+	dataManager.navManager = navManager;
 	//Program Logic
 	requestUsersData();
-
-	//'https://jsonplaceholder.typicode.com/todos'
+	//'https://jsonplaceholder.typicode.com/posts'
+	//'https://jsonplaceholder.typicode.com/comments'
 	//'https://jsonplaceholder.typicode.com/photos'
 	//'https://jsonplaceholder.typicode.com/albums'
-	//'https://jsonplaceholder.typicode.com/comments'
+	//'https://jsonplaceholder.typicode.com/todos'
 
 	function requestUsersData() {
 		var request = new XMLHttpRequest();
@@ -26,14 +21,10 @@ function init() {
 
 	function requestUsersDataCompleted(e) {
 		var request = e.target;
-		// console.log(JSON.parse(request.responseText));
+
 		if (request.readyState === XMLHttpRequest.DONE) {
 			if (request.status === 200) {
-
-				// console.log(request.responseText);
 				var data = JSON.parse(request.responseText);
-				console.log(data);
-				
 				for (var key in data) {
 					var beeData = data[key];
 					var addressData = data[key].address;
@@ -41,124 +32,76 @@ function init() {
 					var geo = new Geo(addressData.geo.lat, addressData.geo.lng);
 
 					var address = new Address(addressData.city, geo, 
-												addressData.street, 
-												addressData.suite, 
-												addressData.zipcode);
-					
-					var bee = new Bee(beeData.id, beeData.username, beeData.email, beeData.phone, 
-							  new Address(addressData.city, 
-							  new Geo(addressData.geo.lat, 
-										addressData.geo.lng), 
-										addressData.street, 
-										addressData.suite, 
-										addressData.zipcode));
-							   
+                                                addressData.street, 
+                                                addressData.suite, 
+                                                addressData.zipcode);
+
+					var bee = new Bee(beeData.id, beeData.name, beeData.username, beeData.email, beeData.phone, 
+                                new Address(addressData.city, 
+                                new Geo(addressData.geo.lat, addressData.geo.lng), addressData.street, addressData.suite, addressData.zipcode));
 					dataManager.bees.push(bee);
 				}
-				
-				navManager.showBees();
+
+				requestUserPosts();
+				//HACK
+				dataManager.setCurrentBee(dataManager.bees[1]);
 			}
 			else {
 				console.log('Server Error');
 			}
 		}
-	
 	}
 
-	function requestPostsData() {
+	function requestUserPosts() {
 		var request = new XMLHttpRequest();
 		request.open('GET', 'https://jsonplaceholder.typicode.com/posts', true);
-		request.onreadystatechange = requestPostsDataCompleted;
+		request.onreadystatechange = requestUserPostsCompleted;
 		request.send();
 	}
 
-	function requestPostsDataCompleted(post) {
+	function requestUserPostsCompleted(e) {
 		var request = e.target;
-
-		if (request.readyState === XMLHttpRequest.DONE) {
-			if (request.status === 200) {
-
-				var postsData = JSON.parse(request.responseText);
-				console.log(postsData);
-				
-				for (var key in postsData) {
-					var postData = postsData[key];
-					var post = new Post(postData.userId, postData.id, postData.title, postData.body);
-					
-					postsData.push(post);
+		if (request.readyState == XMLHttpRequest.DONE) {
+			if (request.status == 200) {
+				var data = JSON.parse(request.responseText);
+				console.log(data);
+				for (const key in data) {
+					var postData = data[key];
+					var post = new Post(postData.id, postData.userId, postData.title, postData.body);
+					dataManager.addPost(post);
 				}
-				
-				// console.log(postsData);
-				
-			}else {
-				console.log('Server Error');
+
+				requestsUserComments();
 			}
 		}
 	}
 
-	function requestTodosData() {
+	function requestsUserComments() {
 		var request = new XMLHttpRequest();
-		request.open('GET', 'https://jsonplaceholder.typicode.com/todos', true);
-		request.onreadystatechange = requestTodosDataCompleted;
+		request.open('GET', 'https://jsonplaceholder.typicode.com/comments', true);
+		request.onreadystatechange = requestsUserCommentsCompleted;
 		request.send();
 	}
 
-	function requestTodosDataCompleted() {
+	function requestsUserCommentsCompleted(e) {
 		var request = e.target;
-		console.log(data);
-		if (request.readyState === XMLHttpRequest.DONE) {
-			if (request.status === 200) {
-
-				var todosData = JSON.parse(request.responseText);
-				console.log(todosData);
-				
-				for (var key in todosData) {
-					var albumData = todosData[key];
-					var todo = new Todo(todoData.userId, todoData.id, todoData.title, todoData.completed);
-					
-					todosData.push(todo);
+		if (request.readyState == XMLHttpRequest.DONE) {
+			if (request.status == 200) {
+				var data = JSON.parse(request.responseText);
+				console.log(data);
+				for (const key in data) {
+					var commentData = data[key];
+					var comment = new Comment(commentData.id, commentData.postId, commentData.name, commentData.email, commentData.body);
+					dataManager.addComment(comment);
 				}
-				
-				// console.log(todosData);
-				
-			}else {
-				console.log('Server Error');
+
+				navManager.showBees();
 			}
 		}
 	}
 
-	function requestAlbumsData() {
-		var request = new XMLHttpRequest();
-		request.open('GET', 'https://jsonplaceholder.typicode.com/albums', true);
-		request.onreadystatechange = requestAlbumsDataCompleted;
-		request.send();
-	}
 
-	function requestAlbumsDataCompleted(e) {
-		var request = e.target;
-		console.log(data);
-		if (request.readyState === XMLHttpRequest.DONE) {
-			if (request.status === 200) {
+	function addPostByUserID(post) {
 
-				var albumsData = JSON.parse(request.responseText);
-				console.log(albumsData);
-				
-				for (var key in albumsData) {
-					var albumData = albumsData[key];
-					var album = new Album(albumData.userId, albumData.id, albumData.title);
-					
-					albumsData.push(album);
-				}
-				
-				// console.log(albumsData);
-				
-			}else {
-				console.log('Server Error');
-			}
-		}
-	
 	}
-		// function addPostByUserID(post) {
-		
-		// }
 }

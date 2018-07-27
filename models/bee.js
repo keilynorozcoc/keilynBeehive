@@ -9,6 +9,7 @@ class Bee {
 		this.posts = [];
 		this.album = null;
 		this.todos = [];
+		this.company = null;
 	}
 
 	comer(){
