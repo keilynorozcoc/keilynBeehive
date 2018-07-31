@@ -17,10 +17,21 @@ class DataManager{
         
     }
 
+    // addPost(post) {
+	// 	this.bees.forEach(function (bee) {
+	// 		if (post.userId == bee.id) {
+	// 			bee.posts.push(post);
+	// 		}
+	// 	});
+	// }
+
     addPost(post) {
+        console.log(this.bees);
+        
 		this.bees.forEach(function (bee) {
-			if (post.userId == bee.id) {
-				bee.posts.push(post);
+			if (post.id == post.userId) {
+                bee.posts.push(post);
+                return;
 			}
 		});
 	}
@@ -29,8 +40,10 @@ class DataManager{
 		this.bees.forEach(function (bee) {
 			bee.posts.forEach(function (post) {
 				if (post.id == comment.postId) {
-					post.comments.push(comment);
-				}
+                    post.comments.push(comment);
+                return;
+                    
+                }
 			});
 		});
     }

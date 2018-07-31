@@ -34,7 +34,7 @@ class BeeComponent extends Component{
         // this.city.innerText = this.model.city;
         this.city.innerText = this.model.address.city + ', '+ this.model.address.street + ', ' + this.model.address.zipcode;
         this.posts.innerText = 'Posts:' + this.model.posts.length;
-        this.photos.innerText = 'Photos: 0'; // + this.model.todos.length;
+        this.photos.innerText = 'Photos:' + this.model.todos.length;
         this.postsBtn.innerText = 'POSTS';
         this.albumBtn.innerText = 'ALBUM';
         this.todosBtn.innerText = 'TODOS';

@@ -38,12 +38,17 @@ function init() {
 
 					var bee = new Bee(beeData.id, beeData.name, beeData.username, beeData.email, beeData.phone, 
                                 new Address(addressData.city, 
-                                new Geo(addressData.geo.lat, addressData.geo.lng), addressData.street, addressData.suite, addressData.zipcode));
+								new Geo(addressData.geo.lat, 
+										addressData.geo.lng), 
+										addressData.street, 
+										addressData.suite, 
+										addressData.zipcode));
+										
 					dataManager.bees.push(bee);
 				}
 
 				requestUserPosts();
-				//HACK
+	
 				dataManager.setCurrentBee(dataManager.bees[1]);
 			}
 			else {
@@ -70,7 +75,7 @@ function init() {
 					var post = new Post(postData.id, postData.userId, postData.title, postData.body);
 					dataManager.addPost(post);
 				}
-
+				navManager.showBeePosts();
 				requestsUserComments();
 			}
 		}
@@ -88,7 +93,7 @@ function init() {
 		if (request.readyState == XMLHttpRequest.DONE) {
 			if (request.status == 200) {
 				var data = JSON.parse(request.responseText);
-				console.log(data);
+				// console.log(data);
 				for (const key in data) {
 					var commentData = data[key];
 					var comment = new Comment(commentData.id, commentData.postId, commentData.name, commentData.email, commentData.body);
@@ -96,6 +101,7 @@ function init() {
 				}
 
 				navManager.showBees();
+				
 			}
 		}
 	}

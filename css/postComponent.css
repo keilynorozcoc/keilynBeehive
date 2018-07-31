@@ -1,21 +1,26 @@
-/* Add your amazing style here! */
-.beeComponent{
+.postComponent {
+	/* background-color: beige;
+	margin-bottom: 10px;
+	height: auto;
+	padding: 10px; */
+}
+.postComponent{
 	background-color: white;
 	border-radius: 2%;
 	border: solid 2px #489DC6; 
 	margin-bottom: 8%;
 }
-.beeComponent h1{
+.postComponent h1{
 	margin-left: 20px;
 	color: #489DC6;
 	font-weight: bold;
 }
-.beeComponent p{
+.postComponent p{
 	color: #868686;
 	font-weight: 500;
 	margin-left: 20px;
 }
-.beeComponent button{
+.postComponent button{
 	color: white;
 	font-weight: bold;
 	margin-left: 20px;
