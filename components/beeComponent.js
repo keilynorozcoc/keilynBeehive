@@ -34,19 +34,27 @@ class BeeComponent extends Component{
         // this.city.innerText = this.model.city;
         this.city.innerText = this.model.address.city + ', '+ this.model.address.street + ', ' + this.model.address.zipcode;
         this.posts.innerText = 'Posts:' + this.model.posts.length;
-        this.photos.innerText = 'Photos:' + this.model.todos.length;
+        this.photos.innerText = 'Photos:'+ this.model.todos.length;
+        this.todos.innerText = 'Todos:' + this.model.todos.length;
         this.postsBtn.innerText = 'POSTS';
         this.albumBtn.innerText = 'ALBUM';
         this.todosBtn.innerText = 'TODOS';
 
         this.postsBtn.onclick = this.postsBtnClick.bind(this);
-
-        // this.container.bee = this.model;
-        
+        this.albumBtn.onclick = this.albumBtnClick.bind(this);
+		this.todosBtn.onclick = this.todosBtnClick.bind(this);
+ 
     }
     
     postsBtnClick(e) {
         this.dataManagr.setCurrentBee(this.model);
     }
+    albumBtnClick(e) {
+		this.dataManager.showBeeAlbums(this.model);
+	}
+
+	todosBtnClick(e) {
+		this.dataManager.showBeeTodos(this.model);
+	}
     
 }

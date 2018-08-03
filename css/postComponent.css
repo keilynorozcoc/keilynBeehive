@@ -31,3 +31,10 @@
 	background-color: rgb(101, 179, 218);
 
 }
+
+.commentComponent{
+	border-radius: 2%;
+	border: solid 2px rgb(72, 198, 198); 
+	width: 80%;
+	margin: 5% 10%;
+}

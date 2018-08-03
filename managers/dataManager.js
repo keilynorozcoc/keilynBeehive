@@ -7,15 +7,23 @@ class DataManager{
                     new Address('Cartago', 
                     new Geo(0.0, 0.0), 'Calle', '1000', '1000/1000'));
                     
-
         this.bees.push(this.user);
     }
 
     setCurrentBee(bee) {
         this.currentBee = bee;
-        console.log(this.currentBee);
-        
+        // console.log(this.currentBee);
     }
+
+    addPost(post) {
+		this.bees.forEach(function (bee) {
+			if (post.userId == bee.id) {
+                // console.log(post.userId, bee.id);
+				bee.posts.push(post);
+            }
+        });
+        // console.log(this.bees);
+}
 
     // addPost(post) {
 	// 	this.bees.forEach(function (bee) {
@@ -25,26 +33,49 @@ class DataManager{
 	// 	});
 	// }
 
-    addPost(post) {
-        console.log(this.bees);
+    // addPost(post) {
+        // console.log(this.bees);
         
-		this.bees.forEach(function (bee) {
-			if (post.id == post.userId) {
-                bee.posts.push(post);
-                return;
-			}
-		});
-	}
+	// 	this.bees.forEach(function (bee) {
+	// 		if (post.id == post.userId) {
+    //             bee.posts.push(post);
+    //             return;
+	// 		}
+	// 	});
+    // }
+    
 
-	addComment(comment) {
-		this.bees.forEach(function (bee) {
-			bee.posts.forEach(function (post) {
-				if (post.id == comment.postId) {
-                    post.comments.push(comment);
-                return;
+addComment(comment) {
+    this.bees.forEach(function (bee) {
+        bee.posts.forEach(function (post) {
+            if (post.id == comment.postId) {
+                post.comments.push(comment);
+            }
+        });
+    });
+}
+showBeePosts(bee) {
+    this.currentBee = bee;
+    this.navManager.showBeePosts();
+}
+showBeeAlbums(bee) {
+    this.currentBee = bee;
+    this.navManager.showBeeAlbums();
+}
+
+showBeeTodos(bee) {
+    this.currentBee = bee;
+    this.navManager.showBeeTodos();
+}
+	// addComment(comment) {
+	// 	this.bees.forEach(function (bee) {
+	// 		bee.posts.forEach(function (post) {
+	// 			if (post.id == comment.postId) {
+    //                 post.comments.push(comment);
+    //             return;
                     
-                }
-			});
-		});
-    }
+    //             }
+	// 		});
+	// 	});
+    // }
 }

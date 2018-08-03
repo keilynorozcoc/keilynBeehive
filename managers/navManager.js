@@ -17,7 +17,9 @@ class NavManager{
 		this.postsComponent.innerHTML = '';
 		this.dataManager.currentBee.posts.forEach(post => {
 			var postComponent = new PostComponent(post, this.postsComponent, this.dataManager);
-		});
+    // console.log(this.dataManager.currentBee.posts);
+    
+        });
 }
 
     showBeesAlbum(){

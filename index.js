@@ -50,6 +50,10 @@ function init() {
 				requestUserPosts();
 	
 				dataManager.setCurrentBee(dataManager.bees[1]);
+				// dataManager.setCurrentBee(dataManager.bees.posts);
+				// dataManager.setCurrentBee(dataManager.bees.post);
+				
+
 			}
 			else {
 				console.log('Server Error');
@@ -69,13 +73,16 @@ function init() {
 		if (request.readyState == XMLHttpRequest.DONE) {
 			if (request.status == 200) {
 				var data = JSON.parse(request.responseText);
-				console.log(data);
+				// console.log(data);
+
 				for (const key in data) {
 					var postData = data[key];
-					var post = new Post(postData.id, postData.userId, postData.title, postData.body);
+					// console.log(postData);
+					var post = new Post(postData.userId, postData.id, postData.title, postData.body);
 					dataManager.addPost(post);
 				}
-				navManager.showBeePosts();
+				// navManager.showBeePosts();
+
 				requestsUserComments();
 			}
 		}

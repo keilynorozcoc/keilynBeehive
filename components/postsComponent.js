@@ -1,0 +1,5 @@
+class PostsComponent {
+	constructor() {
+
+	}
+}
