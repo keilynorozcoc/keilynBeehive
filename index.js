@@ -48,7 +48,7 @@ function init() {
 				}
 
 				requestUserPosts();
-	
+
 				dataManager.setCurrentBee(dataManager.bees[1]);
 				// dataManager.setCurrentBee(dataManager.bees.posts);
 				// dataManager.setCurrentBee(dataManager.bees.post);
@@ -112,8 +112,6 @@ function init() {
 			}
 		}
 	}
-
-
 	function addPostByUserID(post) {
 
 	}

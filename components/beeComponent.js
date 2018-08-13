@@ -47,7 +47,7 @@ class BeeComponent extends Component{
     }
     
     postsBtnClick(e) {
-        this.dataManagr.setCurrentBee(this.model);
+        this.dataManager.setCurrentBee(this.model);
     }
     albumBtnClick(e) {
 		this.dataManager.showBeeAlbums(this.model);

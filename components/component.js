@@ -12,4 +12,12 @@ class Component {
 		}
 	}
 
+	show() {
+		this.container.hidden = false;
+	}
+
+	hide() {
+		this.container.hidden = true;
+	}
+
 }
