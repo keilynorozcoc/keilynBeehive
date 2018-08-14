@@ -63,4 +63,18 @@ class NavManager{
         this.todosComponent.hidden = true;
         this.newPostCompoment.show();
     }
+    	showNewPostComponent() {
+		this.albumComponent.hidden = true;
+		this.todosComponent.hidden = true;
+		this.newPostCompoment.show();
+	}
+
+	showNewCommentComponent(post) {
+		this.postsComponent.container.hidden = true;
+		this.albumComponent.hidden = true;
+		this.todosComponent.hidden = true;
+		this.newPostCompoment.hide();
+		this.newCommentComponent.model = post;
+		this.newCommentComponent.show();
+	}
 }

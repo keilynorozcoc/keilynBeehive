@@ -4,7 +4,19 @@
 	margin-right: 30px;
 	float: right;
 }
-.postsComponent{
-	/* background-color:white; */
-	/* width: 50%; */
+.postsComponent h3{
+	margin-left: 20px;
+	color: rgb(50, 98, 122);
+	font-weight: bold;
+}
+.postsComponent button{
+	color: white;
+	font-weight: bold;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	padding: 5px 15px;
+	border-radius: 5%;
+	border: solid 1px rgb(101, 179, 218);
+	background-color: rgb(101, 179, 218);
+	
 }

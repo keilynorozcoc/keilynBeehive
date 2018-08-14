@@ -1,0 +1,27 @@
+#newPostCompoment #newPostCompomentOKBtn {
+    color: white;
+	font-weight: bold;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	padding: 8px 15px;
+	border-radius: 5%;
+	border: solid 1px rgb(101, 179, 218);
+	background-color: rgb(101, 179, 218);
+}
+
+#newPostCompoment #newPostCompomentCancelBtn {
+    color: white;
+	font-weight: bold;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	padding: 8px 15px;
+	border-radius: 5%;
+	border: solid 1px rgb(101, 179, 218);
+	background-color: rgb(101, 179, 218);
+}
+#newPostCompoment #newPostCompomentBody, #newPostCompomentTitle{
+	border: solid 2px #489DC6; 
+	border-radius: 6%;
+	padding: 10px 15px;
+
+}

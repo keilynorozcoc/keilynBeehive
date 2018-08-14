@@ -1,1 +1,6 @@
 /*  */
+.commentComponent h3{
+    margin-left: 20px;
+	color: #489DC6;
+	font-weight: bold;
+}
